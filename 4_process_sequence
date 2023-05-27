@@ -1,0 +1,33 @@
+@startuml
+
+title Workflow: Execution of Predictive Machine Learning Model
+
+|Main|
+
+start
+:Check data availability?;
+if (Data available?) then (yes)
+  :Load data;
+  :Check preprocessing requirement?;
+  if (Preprocessing required?) then (yes)
+    :Perform preprocessing;
+  else (no)
+    :Continue;
+  endif
+  :Train model;
+  :Evaluate model accuracy;
+  if (Accuracy acceptable?) then (yes)
+    :Perform prediction of "high school degree and/or GED status";
+    stop
+  else (no)
+    :Adjust model;
+    :Repeat training and evaluation cycle;
+  endif
+else (no)
+  :Show error message "Data not available";
+  stop
+endif
+:Perform prediction;
+stop
+
+@enduml
