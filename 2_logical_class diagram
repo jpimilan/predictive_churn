@@ -1,0 +1,63 @@
+@startuml
+
+!define AzureBlue #0072C6
+!define AzurePurple #5C2D91
+!define AzureOrange #F79646
+!define AzureGreen #00A300
+!define AzureYellow #FFD800
+!define LightGray #D3D3D3
+
+skinparam class {
+  BorderColor Black
+  BackgroundColor LightGray
+  FontColor Black
+  Shadowing false
+}
+
+class "PredictiveModelWorkflow" {
+  - dataAvailable: boolean
+  - dataLoaded: boolean
+  - preprocessingRequired: boolean
+  - modelTrained: boolean
+  - accuracyAcceptable: boolean
+
+  + runWorkflow(): void
+}
+
+class "DataLoader" {
+  + load(): void
+}
+
+class "Preprocessor" {
+  + preprocess(): void
+}
+
+class "ModelTrainer" {
+  + train(): void
+}
+
+class "ModelEvaluator" {
+  + evaluate(): void
+}
+
+class "ModelAdjuster" {
+  + adjust(): void
+}
+
+class "PredictionProcessor" {
+  + predict(): void
+}
+
+class "WorkflowStopper" {
+  + stopWorkflow(): void
+}
+
+PredictiveModelWorkflow -- DataLoader
+PredictiveModelWorkflow -- Preprocessor
+PredictiveModelWorkflow -- ModelTrainer
+PredictiveModelWorkflow -- ModelEvaluator
+PredictiveModelWorkflow -- ModelAdjuster
+PredictiveModelWorkflow -- PredictionProcessor
+PredictiveModelWorkflow -- WorkflowStopper
+
+@enduml
