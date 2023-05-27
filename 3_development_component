@@ -1,0 +1,31 @@
+@startuml
+
+left to right direction
+skinparam componentStyle rectangle
+
+package "Predictive Model Workflow" {
+  component "Data Verification" as C1
+  component "Data Loading" as C2
+  component "Preprocessing" as C3
+  component "Model Training" as C4
+  component "Model Evaluation" as C5
+  component "Prediction" as C6
+  database "Data Source" as DB
+  database "Model Storage" as ModelDB
+
+  C1 --> C2
+  C2 --> C3
+  C3 --> C4
+  C4 --> C5
+  C5 --> C6
+  C6 --> ModelDB
+  C6 --> C1
+  C5 --> C4
+  C5 --> C6
+  C6 --> C2
+  C6 --> C3
+}
+
+DB --> C1
+
+@enduml
