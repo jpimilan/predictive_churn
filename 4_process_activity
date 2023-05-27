@@ -1,0 +1,32 @@
+@startuml
+start
+if (Are data available?) then (yes)
+    :Load data;
+    if (Preprocessing required?) then (yes)
+        :Perform preprocessing;
+    endif
+    :Train model;
+    if (Is model trained successfully?) then (yes)
+        :Evaluate model;
+        if (Acceptable accuracy?) then (yes)
+            :Prediction: high school degree and/or GED status;
+            stop
+        else (no)
+            :Adjust model;
+            repeat
+                :Train model;
+                if (Is model trained successfully?) then (yes)
+                    :Evaluate model;
+                endif
+            repeat while (Acceptable accuracy? not achieved)
+            :Prediction: high school degree and/or GED status;
+            stop
+        endif
+    else (no)
+        :Review data and model;
+    endif
+else (no)
+    :Obtain missing data;
+endif
+stop
+@enduml
