@@ -1,0 +1,41 @@
+@startuml
+
+package "Data Source" {
+  [Azure Data Lake]
+  [Azure Blob Storage]
+  [Azure SQL Database]
+  ["On-premises and partner data"]
+}
+
+package "Data Preparation" {
+  [Azure Synapse Analytics]
+  [Azure Data Factory]
+}
+
+package "IA and Machine Learning" {
+  package "Training" {
+    [Azure Machine Learning]
+    [Responsible AI Toolbox]
+  }
+  package "Inferencing" {
+    [Deployment endpoint]
+    [Machine Learning virtual machine]
+  }
+}
+
+package "Analytical Workload" {
+  [Azure Synapse Analytics]
+  [Azure SQL Database]
+}
+
+package "Front-end Model Consumption" {
+  [Power BI]
+  [Web Apps]
+}
+
+[Data Source] --> [Data Preparation]
+[Data Preparation] --> [IA and Machine Learning]
+[IA and Machine Learning] --> [Analytical Workload]
+[Analytical Workload] --> [Front-end Model Consumption]
+
+@enduml
