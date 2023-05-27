@@ -1,0 +1,75 @@
+@startuml
+
+!define AzureBlue #0072C6
+!define AzurePurple #5C2D91
+!define AzureOrange #F79646
+!define AzureGreen #00A300
+!define AzureYellow #FFD800
+!define LightGray #D3D3D3
+
+skinparam node {
+  BorderColor Black
+  BackgroundColor LightGray
+  FontColor Black
+  Shadowing false
+}
+
+node "Data Source" as datasource {
+  node "Azure Data Lake" as datalake
+  node "Azure Blob Storage" as blob
+  node "Azure SQL Database" as sqldb
+  node "On-premises and partner data" as onprem
+}
+
+node "Data preparation" as dataprep {
+  node "Azure Synapse Analytics" as synapse
+  node "Azure Data Factory" as datafactory
+}
+
+node "IA and machine learning" as iaml {
+  node "Training" as training {
+    node "Azure Machine Learning" as ml
+    node "Responsible AI Toolbox" as ai
+  }
+  node "Inferencing" as inferencing {
+    node "Deployment endpoint" as endpoint
+    node "Machine Learning virtual machine" as mlvm
+  }
+}
+
+node "Analytical workload" as analytic {
+  node "Azure Synapse Analytics" as synapse2
+  node "Azure SQL Database" as sqldb2
+}
+
+node "Front-end model consumption" as frontend {
+  node "Power BI" as powerbi
+  node "Web Apps" as webapps
+}
+
+datasource --> datalake
+datasource --> blob
+datasource --> sqldb
+datasource --> onprem
+
+dataprep --> synapse
+dataprep --> datafactory
+
+training --> ml
+training --> ai
+
+inferencing --> endpoint
+inferencing --> mlvm
+
+analytic --> synapse2
+analytic --> sqldb2
+
+frontend --> powerbi
+frontend --> webapps
+
+datasource --> dataprep
+dataprep --> iaml
+iaml --> analytic
+analytic --> frontend
+
+@enduml
