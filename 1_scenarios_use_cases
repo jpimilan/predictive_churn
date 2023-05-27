@@ -1,0 +1,31 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor User as U
+
+rectangle "Predictive Model Workflow" {
+  usecase "Verify Data Availability" as UC1
+  usecase "Load Data" as UC2
+  usecase "Preprocess Data" as UC3
+  usecase "Train Model" as UC4
+  usecase "Evaluate Model" as UC5
+  usecase "Predict High School Degree and/or GED Status" as UC6
+  usecase "Adjust Model" as UC7
+  usecase "Stop Workflow" as UC8
+  usecase "Final Prediction" as UC9
+
+  U --> UC1
+  UC1 --> UC2
+  UC2 --> UC3
+  UC3 --> UC4
+  UC4 --> UC5
+  UC5 --> UC6
+  UC6 --> UC8
+  UC5 --> UC7
+  UC7 --> UC4
+  UC6 --> UC9
+}
+
+@enduml
