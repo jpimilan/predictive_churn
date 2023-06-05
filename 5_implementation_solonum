@@ -1,0 +1,53 @@
+@startuml
+!define AzureBlue #0072C6
+!define AzurePurple #5C2D91
+!define AzureOrange #F79646
+!define AzureGreen #00A300
+!define AzureYellow #FFD800
+skinparam componentStyle uml2
+
+rectangle "I Data Source"  {
+  node "(1)" as datalake
+  node "(2)" as blob
+  node "(3)" as sqldb
+  node "(4)" as onprem
+}
+
+rectangle "II Data preparation"  {
+  node "(5)" as datafactory
+  node "(6)" as synapse
+}
+
+rectangle "III IA and machine learning"  {
+  node "(7)" as training {
+    node "(8)" as ml
+    node "(9)" as ai
+  }
+  node "(10)" as inferencing {
+    node "(11)" as endpoint
+    node "(12)" as mlvm
+  }
+}
+
+rectangle "IV Analytical workload" {
+  node "(13)" as synapse2
+  node "(14)" as sqldb2
+}
+
+rectangle "V Front-end model consumption" {
+  node "(15)" as powerbi
+  node "(16)" as webapps
+}
+
+datalake --> synapse
+blob --> synapse
+sqldb --> synapse
+onprem --> synapse
+datafactory --> synapse
+datafactory --> ml
+ml --> ai
+endpoint --> mlvm
+synapse2 --> sqldb2
+powerbi --> synapse2
+webapps --> synapse2
+@enduml
