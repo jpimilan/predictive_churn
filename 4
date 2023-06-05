@@ -1,0 +1,32 @@
+@startuml
+title Workflow: Execution of Predictive Machine Learning Model
+
+|Main|
+start
+
+ :(1);
+if (Data available?) then (yes)
+   :(2);
+   :(3);
+  if (Preprocessing required?) then (yes)
+    :(4);
+  else (no)
+     :(5);
+  endif
+   :(6);
+   :(7);
+  if (Accuracy acceptable?) then (yes)
+    :(8);
+    stop
+  else (no)
+     :(9);
+     :(10);
+  endif
+else (no)
+   :(2.1);
+  stop
+endif
+
+ :(11);
+stop
+@enduml
